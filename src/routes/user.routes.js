@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controller'); // Adjust path if necessary
-const upload = require('../middleware/multer.middleware'); // Adjust the path to your upload middleware
+const upload = require('../middleware/multer.middleware'); // Adjust path if necessary
+const { verifyJWT } = require('../middleware/auth_middleware'); // Adjust path if necessary
 
 // Handle file uploads and user registration
 router.post('/register',
@@ -11,5 +12,10 @@ router.post('/register',
     ]),
     userController.registerUser
 );
+
+// Login route
+router.post('/login', userController.loginUser);
+
+
 
 module.exports = router;
